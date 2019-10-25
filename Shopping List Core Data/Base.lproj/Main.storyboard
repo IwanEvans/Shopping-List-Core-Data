@@ -29,7 +29,13 @@
                             <outlet property="delegate" destination="30z-5B-7dY" id="WCi-af-lhq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Shopping List" id="729-Tw-E2B"/>
+                    <navigationItem key="navigationItem" title="Shopping List" id="729-Tw-E2B">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="51V-Xv-X3I">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="30z-5B-7dY" id="yYG-Zs-SZd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEs-Bo-djT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
