@@ -12,10 +12,17 @@ import UIKit
 class ViewController: UITableViewController {
     
     var shoppingList = [String]()
+    
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        //update shoppingList to user deaults array
+        if let items = defaults.array(forKey: "shoppingListArray") as? [String] {
+            shoppingList = items
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,6 +47,7 @@ class ViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen when add button is clicked on UIAlert
             self.shoppingList.append(textField.text!)
+            self.defaults.set(self.shoppingList, forKey: "shoppingListArray")
             self.tableView.reloadData()
         }
         
