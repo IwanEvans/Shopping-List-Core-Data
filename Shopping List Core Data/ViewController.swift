@@ -34,6 +34,19 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = shoppingList[indexPath.row]
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print(shoppingList[indexPath.row])
+        
+        //detects which row was selected and if it has checkmark, then add checkmark or take away.
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     //add new items to list
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -46,6 +59,7 @@ class ViewController: UITableViewController {
         //button on UI alert
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen when add button is clicked on UIAlert
+            
             self.shoppingList.append(textField.text!)
             self.defaults.set(self.shoppingList, forKey: "shoppingListArray")
             self.tableView.reloadData()
